@@ -37,13 +37,7 @@ namespace TradeGeckoExample
                     browserForm.Url = uri.AbsoluteUri;
                     browserForm.ShowDialog();
 
-                    using (var authenticationCodeForm = new AuthentificationCodeForm())
-                    {
-                        authenticationCodeForm.Code = browserForm.Code;
-                        authenticationCodeForm.ShowDialog();
-
-                        client.Authentication.SetAuthorizeCode(authenticationCodeForm.Code);
-                    }
+                    client.Authentication.SetAuthorizeCode(browserForm.Code);
                 }
 
                 Client = client;

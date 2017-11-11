@@ -64,12 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthentificationCodeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AuthentificationCodeForm.Designer.cs">
-      <DependentUpon>AuthentificationCodeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\SynchronizeInvokeExtensions.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -79,9 +73,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AuthentificationCodeForm.resx">
-      <DependentUpon>AuthentificationCodeForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -70,6 +70,15 @@ namespace CefSharp.WinForms.Example
             //It's sole purpose is to demonstrate that #553 has been resolved.
             browser.CreateControl();
 
+            // Close form after authorized
+            browser.Browser.AddressChanged += (sender, args) =>
+            {
+                if (browser.Browser.Address.StartsWith("https://go.tradegecko.com/oauth/authorize/"))
+                {
+                    Invoke(new Action(Hide));
+                }
+            };
+
             tabPage.Controls.Add(browser);
 
             if (insertIndex == null)
