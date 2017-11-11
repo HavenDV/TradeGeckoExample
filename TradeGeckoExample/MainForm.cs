@@ -31,6 +31,7 @@ namespace TradeGeckoExample
                 // Create client and connect
                 var client = new GeckoClient(ApplicationId, ApplicationSecret, CallbackUrl);
 
+                // Get authorize code
                 var uri = client.Authentication.GenerateAuthorizeUrl();
                 using (var browserForm = new CefSharp.WinForms.Example.BrowserForm(true))
                 {
@@ -39,8 +40,15 @@ namespace TradeGeckoExample
 
                     client.Authentication.SetAuthorizeCode(browserForm.Code);
                 }
-
+                
+                // Set client property
                 Client = client;
+
+                // Hide connect button
+                connectButton.InvokeIfRequired(c => c.Visible = false);
+                listView.InvokeIfRequired(c => c.Dock = DockStyle.Fill);
+
+                // Show products
                 ShowProducts();
             }
             catch (Exception exception)
