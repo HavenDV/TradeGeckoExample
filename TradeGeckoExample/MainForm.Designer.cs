@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.connectButton = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
             this.applicationIdLabel = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.applicationSecretLabel = new System.Windows.Forms.Label();
             this.callbackUrlTextBox = new System.Windows.Forms.TextBox();
             this.callbackUrlLabel = new System.Windows.Forms.Label();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // connectButton
@@ -110,6 +112,12 @@
             this.callbackUrlLabel.TabIndex = 7;
             this.callbackUrlLabel.Text = "CallbackUrl:";
             // 
+            // imageList
+            // 
+            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +147,7 @@
         private System.Windows.Forms.Label applicationSecretLabel;
         private System.Windows.Forms.TextBox callbackUrlTextBox;
         private System.Windows.Forms.Label callbackUrlLabel;
+        private System.Windows.Forms.ImageList imageList;
     }
 }
 

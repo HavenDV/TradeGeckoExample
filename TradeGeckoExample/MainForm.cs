@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartScreenUtilitiesLibrary.Extensions;
@@ -18,6 +21,9 @@ namespace TradeGeckoExample
         public MainForm()
         {
             InitializeComponent();
+
+            listView.SmallImageList = imageList;
+            listView.LargeImageList = imageList;
         }
 
         public async void Connect(object sender, EventArgs args)
@@ -41,7 +47,7 @@ namespace TradeGeckoExample
 
                     client.Authentication.SetAuthorizeCode(browserForm.Code);
                 }
-                
+
                 // Set client property
                 Client = client;
 
@@ -63,13 +69,29 @@ namespace TradeGeckoExample
 
         public void ShowProducts()
         {
+            var products = Client.Products.List();
+
+            imageList.Images.Clear();
+            foreach (var product in products)
+            {
+                var path = Path.GetTempFileName();
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(product.ImageUrl, path);
+                }
+
+                imageList.Images.Add(Image.FromFile(path));
+            }
+
             listView.InvokeIfRequired(c =>
             {
-                listView.Clear();
+                c.Clear();
 
-                foreach (var product in Client.Products.List())
+                var i = 0;
+                foreach (var product in products)
                 {
-                    listView.Items.Add(product.Name);
+                    c.Items.Add(product.Name, i);
+                    ++i;
                 }
             });
         }
