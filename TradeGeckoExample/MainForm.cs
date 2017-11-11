@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartScreenUtilitiesLibrary.Extensions;
 using TradeGeckoApi;
+using TradeGeckoExample.Properties;
 
 namespace TradeGeckoExample
 {
@@ -53,7 +54,7 @@ namespace TradeGeckoExample
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exception.Message, Resources.Connect_Exception, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

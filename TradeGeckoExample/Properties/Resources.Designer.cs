@@ -59,5 +59,14 @@ namespace TradeGeckoExample.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        internal static string Connect_Exception {
+            get {
+                return ResourceManager.GetString("Connect_Exception", resourceCulture);
+            }
+        }
     }
 }
