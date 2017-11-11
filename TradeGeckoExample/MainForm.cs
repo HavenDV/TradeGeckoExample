@@ -9,9 +9,9 @@ namespace TradeGeckoExample
 {
     public partial class MainForm : Form
     {
-        public static string ApplicationId { get; } = "a95005b278ce780e20480b976747170f1089a242f65288c4f442d7c1a1a6a462";
-        public static string ApplicationSecret { get; } = "7df9cfd236e632dcb84318992eb9ffc379d100e9f1e9333fb414d05d15deba53";
-        public static string CallbackUrl { get; } = "urn:ietf:wg:oauth:2.0:oob";
+        public string ApplicationId => applicationIdTextBox.Text;
+        public string ApplicationSecret => applicationSecretTextBox.Text;
+        public string CallbackUrl => callbackUrlTextBox.Text;
 
         public GeckoClient Client { get; private set; }
 
@@ -45,8 +45,11 @@ namespace TradeGeckoExample
                 // Set client property
                 Client = client;
 
-                // Hide connect button
-                connectButton.InvokeIfRequired(c => c.Visible = false);
+                // Hide connection controls
+                HideControls(connectButton,
+                    applicationIdTextBox, applicationIdLabel,
+                    applicationSecretLabel, applicationSecretTextBox,
+                    callbackUrlLabel, callbackUrlTextBox);
                 listView.InvokeIfRequired(c => c.Dock = DockStyle.Fill);
 
                 // Show products
@@ -70,5 +73,17 @@ namespace TradeGeckoExample
                 }
             });
         }
+
+        #region Utilities
+
+        private void HideControls(params Control[] controls)
+        {
+            foreach (var control in controls)
+            {
+                control.InvokeIfRequired(c => c.Visible = false);
+            }
+        }
+
+        #endregion
     }
 }
