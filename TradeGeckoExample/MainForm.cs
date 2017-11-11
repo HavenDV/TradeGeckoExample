@@ -15,6 +15,11 @@ namespace TradeGeckoExample
         public string ApplicationId => applicationIdTextBox.Text;
         public string ApplicationSecret => applicationSecretTextBox.Text;
         public string CallbackUrl => callbackUrlTextBox.Text;
+        public string Status
+        {
+            get => statusLabel.Text;
+            set => statusLabel.Text = value;
+        }
 
         public GeckoClient Client { get; private set; }
 
@@ -36,9 +41,11 @@ namespace TradeGeckoExample
             try
             {
                 // Create client and connect
+                Status = "Connecting...";
                 var client = new GeckoClient(ApplicationId, ApplicationSecret, CallbackUrl);
 
                 // Get authorize code
+                Status = "Getting authorize code...";
                 var uri = client.Authentication.GenerateAuthorizeUrl();
                 using (var browserForm = new CefSharp.WinForms.Example.BrowserForm(true))
                 {
@@ -49,6 +56,7 @@ namespace TradeGeckoExample
                 }
 
                 // Set client property
+                Status = "Connected. Initialization...";
                 Client = client;
 
                 // Hide connection controls
@@ -59,7 +67,10 @@ namespace TradeGeckoExample
                 listView.InvokeIfRequired(c => c.Dock = DockStyle.Fill);
 
                 // Show products
+                Status = "Initialized. Showing products...";
                 ShowProducts();
+
+                Status = "Done";
             }
             catch (Exception exception)
             {
