@@ -12,6 +12,17 @@ namespace CefSharp.WinForms.Example
     public partial class BrowserForm : Form
     {
         public string Url { get; set; } = "https://www.google.com";
+
+        public string Code
+        {
+            get
+            {
+                var text = ((BrowserTabUserControl)browserTabControl.SelectedTab.Controls[0]).Browser.Address;
+                var index = text.LastIndexOf("/") + 1;
+
+                return text.Substring(index, text.Length - index);
+            }
+        }
         private const string DefaultUrlForAddedTabs = "https://www.google.com";
 
         // Default to a small increment:

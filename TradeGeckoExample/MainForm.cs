@@ -39,6 +39,7 @@ namespace TradeGeckoExample
 
                     using (var authenticationCodeForm = new AuthentificationCodeForm())
                     {
+                        authenticationCodeForm.Code = browserForm.Code;
                         authenticationCodeForm.ShowDialog();
 
                         client.Authentication.SetAuthorizeCode(authenticationCodeForm.Code);

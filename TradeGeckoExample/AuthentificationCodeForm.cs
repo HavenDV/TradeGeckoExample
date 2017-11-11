@@ -5,7 +5,7 @@ namespace TradeGeckoExample
 {
     public partial class AuthentificationCodeForm : Form
     {
-        public string Code => textBox.Text;
+        public string Code { get => textBox.Text; set => textBox.Text = value; }
 
         public AuthentificationCodeForm()
         {
